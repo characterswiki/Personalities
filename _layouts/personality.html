@@ -2,19 +2,20 @@
 layout: default
 ---
 
-<article class="post-content">
-  <header style="margin-bottom: 3rem; text-align: center;">
-    <p style="text-transform: uppercase; color: var(--primary-color); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; margin-bottom: 0.5rem;">Personality Analysis</p>
-    <h1 style="font-size: 2.8rem; letter-spacing: -0.03em;">{{ page.title }}</h1>
-    <div style="height: 4px; width: 60px; background: var(--primary-color); margin: 1.5rem auto;"></div>
+<article class="post-content container" style="margin-top: 3rem; margin-bottom: 5rem;">
+  <header style="text-align: center; margin-bottom: 3rem;">
+    <p style="color: var(--primary-color); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em;">
+      Character Analysis
+    </p>
+    <h1 style="font-size: 3rem; margin-top: 0.5rem;">{{ page.title }}</h1>
+    <hr style="width: 50px; border: 2px solid var(--primary-color); margin: 2rem auto;">
   </header>
 
-  <div class="entry-content">
+  <div class="entry-content" style="font-size: 1.2rem; line-height: 1.8; color: #374151;">
     {{ content }}
   </div>
-  
-  <footer style="text-align: left; padding: 2rem; background: #fff; border: 1px solid var(--border-color); border-radius: 8px;">
-    <h4 style="margin-bottom: 0.5rem;">Explore More</h4>
-    <p>Discover other character traits in our full <a href="/">Personality Database</a>.</p>
-  </footer>
+
+  <div style="margin-top: 4rem; padding: 2rem; background: #fff; border-radius: 12px; border: 1px solid var(--border-color); text-align: center;">
+    <p>Want to explore more profiles? <a href="{{ '/' | relative_url }}" style="color: var(--primary-color); font-weight: 600;">Return to Database</a></p>
+  </div>
 </article>
