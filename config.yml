@@ -1,0 +1,18 @@
+title: "Personalities Database"
+description: "Detailed personality profiles of characters from Japanese media."
+baseurl: "/Personalities"                # change to "" if using a custom domain
+url: "https://characterswiki.github.io"
+
+# Collections – tells Jekyll to process pages in the _personalities folder
+collections:
+  personalities:
+    output: true
+    permalink: /:name/
+
+# Default layout for collection items
+defaults:
+  - scope:
+      path: ""
+      type: "personalities"
+    values:
+      layout: "personality"
