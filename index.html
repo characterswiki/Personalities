@@ -1,21 +1,71 @@
 ---
 layout: default
-title: Character Personality Database
+title: Home
 ---
 
-<section style="padding: 3rem 0; text-align: center; border-bottom: 1px solid var(--border-color);">
-  <h1 style="font-size: 2.5rem;">Character Personality Database</h1>
-  <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">
-    Explore in-depth psychological traits, motivations, and behavioral patterns of your favorite fictional characters.
+<header class="hero-section" style="padding: 4rem 0 3rem; text-align: center; background: #fff; border-bottom: 1px solid var(--border-color);">
+  <div class="container">
+    <h1 style="font-size: clamp(2.5rem, 5vw, 3.5rem); letter-spacing: -0.04em; margin-bottom: 1rem; font-weight: 800;">
+      {{ site.title }}
+    </h1>
+    <p style="font-size: 1.25rem; color: var(--text-muted); max-width: 700px; margin: 0 auto 2.5rem; line-height: 1.5;">
+      {{ site.description }}
+    </p>
+
+    <div class="search-container" style="max-width: 500px; margin: 0 auto; position: relative;">
+      <input type="text" id="characterSearch" placeholder="Search for a character (e.g. Akito Takagi)..." 
+        style="width: 100%; padding: 1rem 1.5rem; border-radius: 50px; border: 2px solid var(--border-color); font-size: 1rem; outline: none; transition: border-color 0.3s; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);">
+    </div>
+  </div>
+</header>
+
+<div class="container" style="margin-top: 2rem;">
+  <p style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">
+    Total Profiles: <span style="color: var(--primary-color);">{{ site.personalities | size }}</span>
   </p>
+</div>
+
+<section class="container" style="padding-bottom: 5rem;">
+  <div class="card-grid" id="characterGrid">
+    {% for character in site.personalities %}
+    <a href="{{ character.url | relative_url }}" class="card character-card" data-title="{{ character.title | downcase }}">
+      <div class="card-tag" style="font-size: 0.7rem; font-weight: 700; color: var(--primary-color); text-transform: uppercase; margin-bottom: 0.5rem; display: block;">Profile Analysis</div>
+      <h3 style="margin-bottom: 0.75rem; font-size: 1.4rem;">{{ character.title }}</h3>
+      <p style="font-size: 0.95rem; line-height: 1.5; color: var(--text-muted);">
+        {{ character.content | strip_html | truncatewords: 20 }}
+      </p>
+      <div style="margin-top: 1.5rem; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; color: var(--text-main);">
+        Read Full Traits <span style="margin-left: 8px; transition: transform 0.2s;">→</span>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+  <div id="noResults" style="display: none; text-align: center; padding: 5rem 0;">
+    <p style="font-size: 1.2rem; color: var(--text-muted);">No characters found matching your search.</p>
+  </div>
 </section>
 
-<div class="card-grid">
-  {% for personality in site.personalities %}
-  <a href="{{ personality.url | relative_url }}" class="card">
-    <h3>{{ personality.title }}</h3>
-    <p>{{ personality.content | strip_html | truncatewords: 25 }}</p>
-    <span style="color: var(--primary-color); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; margin-top: 1rem; display: block;">Read Analysis →</span>
-  </a>
-  {% endfor %}
-</div>
+<script>
+  const searchInput = document.getElementById('characterSearch');
+  const cards = document.querySelectorAll('.character-card');
+  const grid = document.getElementById('characterGrid');
+  const noResults = document.getElementById('noResults');
+
+  searchInput.addEventListener('input', (e) => {
+    const value = e.target.value.toLowerCase();
+    let hasResults = false;
+
+    cards.forEach(card => {
+      const title = card.getAttribute('data-title');
+      if (title.includes(value)) {
+        card.style.display = 'block';
+        hasResults = true;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    noResults.style.display = hasResults ? 'none' : 'block';
+  });
+</script>
