@@ -1,29 +1,57 @@
+# --- Site Settings ---
 title: "Personalities Database"
-description: "Detailed personality profiles of characters from Japanese media."
-baseurl: "/Personalities"                # change to "" if using a custom domain
+description: "Detailed personality profiles of characters from Japanese media, including anime, manga, and light novels."
+author: "Characters Wiki"
 url: "https://characterswiki.github.io"
+baseurl: "/Personalities" # Keep as is for GitHub project pages
 
-# Collections – tells Jekyll to process pages in the _personalities folder
+# --- Collections ---
+# This tells Jekyll to process files in the _personalities/ folder
 collections:
   personalities:
     output: true
-    permalink: /:name/
+    permalink: /:name/ # Results in: /Personalities/character-name/
 
-# Default layout for collection items
+# --- Layout Defaults ---
 defaults:
   - scope:
       path: ""
       type: "personalities"
     values:
-      layout: "personality"
-# SEO settings
-author: Characters Wiki
-twitter:
-  username: characterswiki  # optional, replace with your handle
-facebook:
-  app_id:                   # optional
-logo: /assets/images/logo.png  # create a simple logo
+      layout: "personality" # Automatically applies the layout to all personality pages
+
+# --- SEO & Social Metadata ---
+# These are used by social media crawlers and SEO plugins
 social:
-  name: Characters Wiki
+  name: "Characters Wiki"
   links:
     - https://github.com/characterswiki/Personalities
+twitter:
+  username: "characterswiki"
+  card: "summary_large_image"
+facebook:
+  app_id: "" # Leave empty if not used
+
+# --- Technical Build Settings ---
+markdown: kramdown
+highlighter: rouge
+excerpt_separator: "" # Optional: use this tag to define manual snippets for cards
+
+# --- Files to Exclude from Build ---
+# Keeps your site clean and prevents scripts from being indexed
+exclude:
+  - generate_pages.py
+  - .github/
+  - _data/
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/
+
+# --- Plugins ---
+# These are essential for the "SEO Friendly" goal
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
