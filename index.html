@@ -3,25 +3,19 @@ layout: default
 title: Character Personality Database
 ---
 
-<main>
-  <section class="hero">
-    <h1>Character Personality Database</h1>
-    <p>
-      Explore psychological traits, motivations, and behavioral patterns
-      of fictional characters from anime, games, films, and literature.
-    </p>
-  </section>
+<section style="padding: 3rem 0; text-align: center; border-bottom: 1px solid var(--border-color);">
+  <h1 style="font-size: 2.5rem;">Character Personality Database</h1>
+  <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+    Explore in-depth psychological traits, motivations, and behavioral patterns of your favorite fictional characters.
+  </p>
+</section>
 
-  <div class="search-container">
-    <input type="text" id="search" placeholder="Search personalities..." aria-label="Search characters">
-  </div>
-
-  <section class="cards">
-    {% for item in site.personalities %}
-      <a class="card" href="{{ item.url | relative_url }}">
-        <h2>{{ item.name }}</h2>
-        <p>{{ item.personality | strip_html | truncatewords: 25 }}</p>
-      </a>
-    {% endfor %}
-  </section>
-</main>
+<div class="card-grid">
+  {% for personality in site.personalities %}
+  <a href="{{ personality.url | relative_url }}" class="card">
+    <h3>{{ personality.title }}</h3>
+    <p>{{ personality.content | strip_html | truncatewords: 25 }}</p>
+    <span style="color: var(--primary-color); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; margin-top: 1rem; display: block;">Read Analysis →</span>
+  </a>
+  {% endfor %}
+</div>
