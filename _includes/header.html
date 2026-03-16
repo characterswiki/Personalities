@@ -1,4 +1,19 @@
-<header>
-    <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
-    <p class="site-description">{{ site.description }}</p>
+<header class="site-header">
+
+<div class="container header-flex">
+
+<a class="logo" href="{{ '/' | relative_url }}">
+CharactersWiki
+</a>
+
+<nav class="main-nav">
+
+<a href="{{ '/' | relative_url }}">Home</a>
+<a href="{{ '/about' | relative_url }}">About</a>
+<a href="{{ '/privacy' | relative_url }}">Privacy</a>
+
+</nav>
+
+</div>
+
 </header>
