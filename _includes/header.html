@@ -1,10 +1,11 @@
 <header>
   <div class="container nav-wrapper">
-    <a href="/" class="logo">CharactersWiki</a>
+    <a href="{{ '/' | relative_url }}" class="logo">CharactersWiki</a>
+    
     <nav>
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="/privacy">Privacy</a>
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <a href="{{ '/about' | relative_url }}">About</a>
+      <a href="{{ '/privacy' | relative_url }}">Privacy</a>
     </nav>
   </div>
 </header>
