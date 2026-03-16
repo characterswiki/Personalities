@@ -16,3 +16,14 @@ defaults:
       type: "personalities"
     values:
       layout: "personality"
+# SEO settings
+author: Characters Wiki
+twitter:
+  username: characterswiki  # optional, replace with your handle
+facebook:
+  app_id:                   # optional
+logo: /assets/images/logo.png  # create a simple logo
+social:
+  name: Characters Wiki
+  links:
+    - https://github.com/characterswiki/Personalities
