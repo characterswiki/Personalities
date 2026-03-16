@@ -7,14 +7,12 @@
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
 </head>
 <body>
-    <header>
-        <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
-    </header>
+    {% include header.html %}
+
     <main>
         {{ content }}
     </main>
-    <footer>
-        <p>© {{ site.time | date: '%Y' }} Characters Wiki</p>
-    </footer>
+
+    {% include footer.html %}
 </body>
 </html>
