@@ -1,0 +1,147 @@
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.8;
+    color: #333;
+    background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Layout container */
+body > * {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+/* Header */
+header {
+    border-bottom: 2px solid #eaecef;
+    margin: 20px 0 30px;
+    padding-bottom: 15px;
+}
+
+header h1 {
+    font-size: 2em;
+    font-weight: 600;
+}
+
+header h1 a {
+    color: #24292e;
+    text-decoration: none;
+}
+
+header h1 a:hover {
+    color: #0366d6;
+}
+
+/* Main content */
+main {
+    flex: 1;
+}
+
+/* Footer */
+footer {
+    margin-top: 50px;
+    padding: 20px 0;
+    text-align: center;
+    color: #586069;
+    font-size: 0.9em;
+    border-top: 1px solid #eaecef;
+}
+
+/* Links */
+a {
+    color: #0366d6;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Homepage list */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eaecef;
+}
+
+li:last-child {
+    border-bottom: none;
+}
+
+.excerpt {
+    color: #586069;
+    font-size: 0.95em;
+    margin-top: 8px;
+    line-height: 1.6;
+}
+
+/* Personality page */
+.personality h1 {
+    font-size: 2.2em;
+    margin-bottom: 20px;
+    color: #24292e;
+    border-bottom: 2px solid #eaecef;
+    padding-bottom: 10px;
+}
+
+.personality-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-left: 5px solid #0366d6;
+    white-space: pre-wrap;       /* Preserve line breaks */
+    word-wrap: break-word;       /* Break long words */
+    font-size: 1.1em;
+    line-height: 1.9;
+    color: #2c3e50;
+}
+
+.personality-content p {
+    margin-bottom: 1.2em;
+}
+
+.personality-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Back link */
+.personality a[href*="back"] {
+    display: inline-block;
+    margin-top: 25px;
+    font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    body {
+        line-height: 1.6;
+    }
+
+    .personality h1 {
+        font-size: 1.8em;
+    }
+
+    .personality-content {
+        padding: 20px;
+        font-size: 1em;
+    }
+}
