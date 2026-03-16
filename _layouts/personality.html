@@ -1,7 +1,18 @@
 ---
 layout: default
 ---
-
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ page.name | escape }}",
+  "description": {{ page.personality | strip_html | truncate: 300 | jsonify }},
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ page.url | absolute_url }}"
+  }
+}
+</script>
 <article class="personality">
     <h1>{{ page.name }}</h1>
     <div class="personality-content">
