@@ -1,45 +1,101 @@
-name: Generate Personality Pages
+/* =========================
+   Mobile Menu Toggle
+========================= */
 
-on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
+document.addEventListener("DOMContentLoaded", function () {
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+const menuButton = document.querySelector(".menu-toggle");
+const nav = document.querySelector(".main-nav");
 
-    steps:
-      - uses: actions/checkout@v4
+if(menuButton){
+menuButton.addEventListener("click", function(){
+nav.classList.toggle("active");
+});
+}
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
+/* =========================
+   Live Search Filter
+========================= */
 
-      - name: Check data files
-        run: |
-          if [ ! -f _data/names.txt ]; then
-            echo "❌ _data/names.txt not found!"
-            exit 1
-          fi
-          if [ ! -f _data/personality.txt ]; then
-            echo "❌ _data/personality.txt not found!"
-            exit 1
-          fi
-          echo "✅ Data files found"
+const searchInput = document.getElementById("search");
 
-      - name: Run generator script
-        run: python generate_pages.py
+if(searchInput){
 
-      - name: Commit and push generated files
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add _personalities/
-          if git diff --staged --quiet; then
-            echo "📭 No changes to commit"
-          else
-            git commit -m "Auto-generate personality pages"
-            git push
-          fi
+searchInput.addEventListener("keyup", function(){
+
+let filter = searchInput.value.toLowerCase();
+
+let cards = document.querySelectorAll(".card");
+
+cards.forEach(function(card){
+
+let text = card.innerText.toLowerCase();
+
+if(text.includes(filter)){
+card.style.display = "block";
+}else{
+card.style.display = "none";
+}
+
+});
+
+});
+
+}
+
+/* =========================
+   Scroll To Top Button
+========================= */
+
+const topButton = document.createElement("button");
+
+topButton.innerText = "↑";
+
+topButton.id = "scrollTop";
+
+document.body.appendChild(topButton);
+
+window.addEventListener("scroll", function(){
+
+if(window.scrollY > 400){
+
+topButton.style.display = "block";
+
+}else{
+
+topButton.style.display = "none";
+
+}
+
+});
+
+topButton.addEventListener("click", function(){
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+});
+
+/* =========================
+   Smooth Anchor Scroll
+========================= */
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+anchor.addEventListener("click", function(e){
+
+e.preventDefault();
+
+document.querySelector(this.getAttribute("href")).scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+});
+
+});
+
+});
