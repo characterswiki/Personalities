@@ -117,3 +117,36 @@ footer {
   nav a { margin: 0 0.75rem; font-size: 0.9rem; }
   .post-content { font-size: 1.05rem; }
 }
+/* Mobile Responsive Patch */
+@media (max-width: 768px) {
+  .nav-wrapper {
+    flex-direction: column; /* Stacks logo and menu */
+    text-align: center;
+    gap: 15px;
+  }
+  
+  nav {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  nav a {
+    margin: 0 10px; /* Even spacing for thumb-tapping */
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr; /* Forces cards to be full width on mobile */
+    padding: 0 10px;
+  }
+
+  h1 {
+    font-size: 1.8rem !important; /* Prevents titles from breaking the screen width */
+  }
+  
+  .post-content {
+    font-size: 1rem; /* Better reading size for phones */
+    padding: 0 15px;
+  }
+}
