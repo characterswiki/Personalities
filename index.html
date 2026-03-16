@@ -1,35 +1,33 @@
 ---
 layout: default
 title: Personalities Database
-description: Explore personality profiles of fictional characters including traits, psychology, and behavior analysis.
 ---
 
-<h1>Personalities Database</h1>
+<section class="hero">
 
-<p>{{ page.description }}</p>
+<h1>Character Personality Database</h1>
 
-<section class="personalities-list">
+<p>
+Explore psychological traits, motivations,
+and behavior patterns of fictional characters.
+</p>
 
-<ul>
+</section>
+
+<section class="card-grid">
 
 {% for item in site.personalities %}
 
-<li class="personality-card">
+<a class="card" href="{{ item.url | relative_url }}">
 
-<h2>
-<a href="{{ item.url | relative_url }}">
-{{ item.name }}
-</a>
-</h2>
+<h2>{{ item.name }}</h2>
 
-<p class="excerpt">
+<p>
 {{ item.personality | strip_html | truncatewords: 30 }}
 </p>
 
-</li>
+</a>
 
 {% endfor %}
-
-</ul>
 
 </section>
