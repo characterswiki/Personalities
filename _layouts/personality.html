@@ -1,22 +1,48 @@
 ---
 layout: default
 ---
+
+<!-- Structured Data for SEO -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "{{ page.name | escape }}",
+  "name": {{ page.name | jsonify }},
   "description": {{ page.personality | strip_html | truncate: 300 | jsonify }},
+  "url": "{{ page.url | absolute_url }}",
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "{{ page.url | absolute_url }}"
   }
 }
 </script>
-<article class="personality">
-    <h1>{{ page.name }}</h1>
-    <div class="personality-content">
-        {{ page.personality | newline_to_br }}
-    </div>
-    <p><a href="{{ '/' | relative_url }}">← Back to all personalities</a></p>
+
+<article class="personality-article">
+
+<header class="personality-header">
+
+<h1 class="personality-title">
+{{ page.name }}
+</h1>
+
+<p class="personality-meta">
+Character Personality Profile
+</p>
+
+</header>
+
+<section class="personality-content">
+
+{{ page.personality | newline_to_br }}
+
+</section>
+
+<footer class="personality-footer">
+
+<a class="back-link" href="{{ '/' | relative_url }}">
+← Browse All Personalities
+</a>
+
+</footer>
+
 </article>
