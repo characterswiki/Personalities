@@ -1,6 +1,9 @@
 <footer>
   <div class="container">
     <p>&copy; {{ "now" | date: "%Y" }} Characters Wiki. All Rights Reserved.</p>
-    <p style="font-size: 0.8rem; margin-top: 0.5rem;">Optimized for psychological character analysis and research.</p>
+    <div style="margin-top: 1rem;">
+      <a href="{{ '/about' | relative_url }}" style="margin: 0 10px;">About</a>
+      <a href="{{ '/privacy' | relative_url }}" style="margin: 0 10px;">Privacy Policy</a>
+    </div>
   </div>
 </footer>
