@@ -1,0 +1,11 @@
+---
+layout: default
+---
+
+<article class="personality">
+    <h1>{{ page.name }}</h1>
+    <div class="personality-content">
+        {{ page.personality | newline_to_br }}
+    </div>
+    <p><a href="{{ '/' | relative_url }}">← Back to all personalities</a></p>
+</article>
