@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Personalities Database
+title: Character Personality Database
 ---
 
 <section class="hero">
@@ -8,13 +8,13 @@ title: Personalities Database
 <h1>Character Personality Database</h1>
 
 <p>
-Explore psychological traits, motivations,
-and behavior patterns of fictional characters.
+Explore psychological traits, motivations, and behavioral patterns
+of fictional characters from anime, games, films, and literature.
 </p>
 
 </section>
 
-<section class="card-grid">
+<section class="cards">
 
 {% for item in site.personalities %}
 
@@ -23,7 +23,7 @@ and behavior patterns of fictional characters.
 <h2>{{ item.name }}</h2>
 
 <p>
-{{ item.personality | strip_html | truncatewords: 30 }}
+{{ item.personality | strip_html | truncatewords: 25 }}
 </p>
 
 </a>
