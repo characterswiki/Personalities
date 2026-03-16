@@ -1,3 +1,49 @@
+/* GLOBAL MOBILE RESPONSIVENESS */
+html, body {
+    overflow-x: hidden; /* Prevents side-scrolling */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 15px; /* Keeps text from touching phone edges */
+    box-sizing: border-box;
+}
+
+img, video, canvas {
+    max-width: 100%; /* Ensures no elements are wider than screen */
+    height: auto;
+}
+
+/* Fix for the massive titles in your screenshots */
+h1 {
+    font-size: clamp(1.8rem, 8vw, 3rem) !important; 
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.1;
+}
+
+/* Makes the card grid stack on phones */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+/* Fixes the "squashed" header links */
+.nav-wrapper {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 0;
+}
+
 :root {
   --primary-color: #2563eb;
   --text-main: #1f2937;
