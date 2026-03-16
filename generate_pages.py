@@ -1,48 +1,48 @@
 import os
+import re
 
-# Create _personalities folder if it doesn't exist
-os.makedirs("_personalities", exist_ok=True)
+def slugify(text):
+    text = text.lower()
+    text = re.sub(r'[^\w\s-]', '', text)
+    return re.sub(r'[-\s]+', '-', text).strip('-')
 
-# Read names.txt (one name per line)
-with open("_data/names.txt", "r", encoding="utf-8") as f:
+# Paths
+names_file = '_data/names.txt'
+personality_file = '_data/personality.txt'
+output_dir = '_personalities'
+
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+
+with open(names_file, 'r', encoding='utf-8') as f:
     names = [line.strip() for line in f if line.strip()]
 
-# Read personality.txt – blocks separated by "\n\n---\n\n"
-with open("_data/personality.txt", "r", encoding="utf-8") as f:
-    content = f.read()
-    # Split on the separator used in the Colab output
-    personalities = [p.strip() for p in content.split("\n\n---\n\n") if p.strip()]
+# Split by the triple dash separator
+with open(personality_file, 'r', encoding='utf-8') as f:
+    content_list = f.read().split('---')
 
-# Verify counts match
-if len(names) != len(personalities):
-    raise ValueError(
-        f"❌ Count mismatch: names.txt has {len(names)} entries, "
-        f"personality.txt has {len(personalities)} entries. "
-        "Both files must have the same number of entries."
-    )
+for i, name in enumerate(names):
+    if i < len(content_list):
+        slug = slugify(name)
+        file_name = f"{slug}.md"
+        
+        # CLEANING: Remove extra whitespace from the text
+        body_text = content_list[i].strip()
+        
+        # CORRECT STRUCTURE: 
+        # 1. Front Matter (Metadata)
+        # 2. Closing dashes
+        # 3. Actual Body Content
+        full_file_content = (
+            f"---\n"
+            f"layout: personality\n"
+            f"title: \"{name}\"\n"
+            f"description: \"Explore the detailed psychological traits and personality analysis of {name}.\"\n"
+            f"---\n\n" # This second '---' ends the metadata
+            f"{body_text}" # This is the "Content" Jekyll will display
+        )
+        
+        with open(os.path.join(output_dir, file_name), 'w', encoding='utf-8') as f:
+            f.write(full_file_content)
 
-print(f"✅ Found {len(names)} entries. Generating pages...")
-
-for name, personality in zip(names, personalities):
-    # Create a safe filename slug
-    # Remove any characters that are not alphanumeric or space, then replace spaces with hyphens
-    slug = ''.join(c for c in name if c.isalnum() or c.isspace()).rstrip()
-    slug = slug.replace(" ", "-").lower()
-    # Fallback if slug becomes empty
-    if not slug:
-        slug = "character"
-
-    filename = f"_personalities/{slug}.md"
-
-    # Indent every line of the personality text by two spaces
-    indented_personality = "\n".join("  " + line for line in personality.split("\n"))
-
-    with open(filename, "w", encoding="utf-8") as f:
-        f.write(f"""---
-name: "{name}"
-personality: |
-{indented_personality}
----
-""")
-
-print(f"✅ Generated {len(names)} personality pages in _personalities/")
+print(f"Fixed! Generated {len(names)} pages with visible content.")
