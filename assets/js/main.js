@@ -1,0 +1,45 @@
+name: Generate Personality Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Check data files
+        run: |
+          if [ ! -f _data/names.txt ]; then
+            echo "❌ _data/names.txt not found!"
+            exit 1
+          fi
+          if [ ! -f _data/personality.txt ]; then
+            echo "❌ _data/personality.txt not found!"
+            exit 1
+          fi
+          echo "✅ Data files found"
+
+      - name: Run generator script
+        run: python generate_pages.py
+
+      - name: Commit and push generated files
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add _personalities/
+          if git diff --staged --quiet; then
+            echo "📭 No changes to commit"
+          else
+            git commit -m "Auto-generate personality pages"
+            git push
+          fi
