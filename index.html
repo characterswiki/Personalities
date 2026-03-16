@@ -3,32 +3,25 @@ layout: default
 title: Character Personality Database
 ---
 
-<section class="hero">
+<main>
+  <section class="hero">
+    <h1>Character Personality Database</h1>
+    <p>
+      Explore psychological traits, motivations, and behavioral patterns
+      of fictional characters from anime, games, films, and literature.
+    </p>
+  </section>
 
-<h1>Character Personality Database</h1>
+  <div class="search-container">
+    <input type="text" id="search" placeholder="Search personalities..." aria-label="Search characters">
+  </div>
 
-<p>
-Explore psychological traits, motivations, and behavioral patterns
-of fictional characters from anime, games, films, and literature.
-</p>
-
-</section>
-<input type="text" id="search" placeholder="Search personalities...">
-
-<section class="cards">
-
-{% for item in site.personalities %}
-
-<a class="card" href="{{ item.url | relative_url }}">
-
-<h2>{{ item.name }}</h2>
-
-<p>
-{{ item.personality | strip_html | truncatewords: 25 }}
-</p>
-
-</a>
-
-{% endfor %}
-
-</section>
+  <section class="cards">
+    {% for item in site.personalities %}
+      <a class="card" href="{{ item.url | relative_url }}">
+        <h2>{{ item.name }}</h2>
+        <p>{{ item.personality | strip_html | truncatewords: 25 }}</p>
+      </a>
+    {% endfor %}
+  </section>
+</main>
