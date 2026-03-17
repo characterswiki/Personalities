@@ -2,15 +2,14 @@
 title: "Personalities Database"
 description: "Detailed personality profiles of characters from Japanese media, including anime, manga, and light novels."
 author: "Characters Wiki"
-url: "https://characterswiki.github.io"
-baseurl: "/Personalities" # Keep as is for GitHub project pages
+url: "https://personalitytraits.vercel.app"   # Updated to your Vercel domain
+baseurl: ""                                    # Must be empty for Vercel root
 
 # --- Collections ---
-# This tells Jekyll to process files in the _personalities/ folder
 collections:
   personalities:
     output: true
-    permalink: /:name/ # Results in: /Personalities/character-name/
+    permalink: /:name/          # Clean URLs: /character-name
 
 # --- Layout Defaults ---
 defaults:
@@ -18,10 +17,9 @@ defaults:
       path: ""
       type: "personalities"
     values:
-      layout: "personality" # Automatically applies the layout to all personality pages
+      layout: "personality"
 
 # --- SEO & Social Metadata ---
-# These are used by social media crawlers and SEO plugins
 social:
   name: "Characters Wiki"
   links:
@@ -30,15 +28,14 @@ twitter:
   username: "characterswiki"
   card: "summary_large_image"
 facebook:
-  app_id: "" # Leave empty if not used
+  app_id: ""                     # Optional
 
-# --- Technical Build Settings ---
+# --- Build Settings ---
 markdown: kramdown
 highlighter: rouge
-excerpt_separator: "" # Optional: use this tag to define manual snippets for cards
+excerpt_separator: ""
 
 # --- Files to Exclude from Build ---
-# Keeps your site clean and prevents scripts from being indexed
 exclude:
   - generate_pages.py
   - .github/
@@ -48,9 +45,10 @@ exclude:
   - Gemfile.lock
   - node_modules/
   - vendor/
+  - .gitignore
+  - vercel.json
 
 # --- Plugins ---
-# These are essential for the "SEO Friendly" goal
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
