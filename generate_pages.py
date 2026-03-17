@@ -58,12 +58,3 @@ for name in names:
     # Optional: remove any extra spaces
     name = " ".join(name.split())
     cleaned_names.append(name)
-names = cleaned_names
-# --- END OF NEW CODE ---
-- name: Generate sitemap
-  run: python generate_sitemap.py
-- name: Commit sitemap
-  run: |
-    git add sitemap.xml
-    git commit -m "Update sitemap" || echo "No changes"
-    git push
