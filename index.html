@@ -3,26 +3,27 @@ layout: default
 title: Character Personality Database
 ---
 
-<input id="search" type="text" placeholder="Search personalities...">
+<main>
+  <section class="hero">
+    <h1>Character Personality Database</h1>
+    <p>
+      Explore psychological traits, motivations, and behavioral patterns
+      of fictional characters from anime, games, films, and literature.
+    </p>
+  </section>
 
-<section class="cards">
+  <div class="search-container">
+    <input type="text" id="search" placeholder="Search personalities..." aria-label="Search characters">
+  </div>
 
-{% for item in site.personalities %}
-
-<article class="card">
-
-<h2>
-<a href="{{ item.url | relative_url }}">
-{{ item.name }}
-</a>
-</h2>
-
-<p>
-{{ item.personality | strip_html | truncatewords: 25 }}
-</p>
-
-</article>
-
-{% endfor %}
-
-</section>
+  <!-- SINGLE CORRECT LOOP – ONLY THIS SECTION SHOULD EXIST -->
+  <section class="cards">
+    {% for item in site.personalities %}
+      <a class="card" href="{{ item.url | relative_url }}">
+        <h2>{{ item.name }}</h2>
+        <p>{{ item.personality | strip_html | truncatewords: 25 | append: "..." }}</p>
+      </a>
+    {% endfor %}
+  </section>
+  <!-- END OF LOOP – NO OTHER CONTENT BELOW THIS -->
+</main>
