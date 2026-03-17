@@ -1,9 +1,9 @@
 <footer>
-  <div class="container">
-    <p>&copy; {{ "now" | date: "%Y" }} Characters Wiki. All Rights Reserved.</p>
-    <div style="margin-top: 1rem;">
-      <a href="{{ '/about' | relative_url }}" style="margin: 0 10px;">About</a>
-      <a href="{{ '/privacy' | relative_url }}" style="margin: 0 10px;">Privacy Policy</a>
-    </div>
-  </div>
+  <p>© {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
+  <p>
+    <a href="{{ '/' | relative_url }}">Home</a> |
+    <a href="{{ '/about' | relative_url }}">About</a> |
+    <a href="{{ '/privacy' | relative_url }}">Privacy</a>
+  </p>
+  <p>Data sourced from Fandom and Japanese media references.</p>
 </footer>
