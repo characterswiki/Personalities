@@ -43,10 +43,19 @@ jobs:
             git commit -m "Auto-generate personality pages"
             git push
           fi
-- name: Generate sitemap
-  run: python generate_sitemap.py
-- name: Commit sitemap
-  run: |
-    git add sitemap.xml
-    git commit -m "Update sitemap" || echo "No changes"
-    git push
+
+      # --- NEW: Generate and commit sitemap ---
+      - name: Generate sitemap
+        run: python generate_sitemap.py
+
+      - name: Commit and push sitemap
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add sitemap.xml
+          if git diff --staged --quiet; then
+            echo "📭 No changes to sitemap"
+          else
+            git commit -m "Update sitemap"
+            git push
+          fi
