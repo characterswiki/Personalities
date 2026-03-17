@@ -4,15 +4,21 @@ title: Character Personality Database
 ---
 
 <main>
-  <h1>{{ site.title }}</h1>
-  <p>{{ site.description }}</p>
+  <section class="hero">
+    <h1>{{ site.title }}</h1>
+    <p>{{ site.description }}</p>
+  </section>
+
+  <div class="search-container">
+    <input type="text" id="search" placeholder="Search personalities...">
+  </div>
 
   <section class="cards">
     {% for item in site.personalities %}
-      <div class="card">
-        <h2><a href="{{ item.url | relative_url }}">{{ item.name }}</a></h2>
-        <p>{{ item.personality | strip_html | truncatewords: 25 }}</p>
-      </div>
+      <a class="card" href="{{ item.url | relative_url }}">
+        <h2>{{ item.name }}</h2>
+        <p>{{ item.personality | strip_html | truncatewords: 25 | append: "..." }}</p>
+      </a>
     {% endfor %}
   </section>
 </main>
