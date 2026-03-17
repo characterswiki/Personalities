@@ -1,14 +1,21 @@
-<header>
-  <div class="header-container">
-    <div class="site-title">
-      <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
-    </div>
-    <nav class="main-nav">
-      <ul>
-        <li><a href="{{ '/' | relative_url }}">Home</a></li>
-        <li><a href="{{ '/about' | relative_url }}">About</a></li>
-        <li><a href="{{ '/privacy' | relative_url }}">Privacy</a></li>
-      </ul>
-    </nav>
-  </div>
+<header class="site-header">
+
+<div class="container">
+
+<a class="logo" href="{{ '/' | relative_url }}">
+PersonalityTraits
+</a>
+
+<nav class="nav">
+
+<a href="{{ '/' | relative_url }}">Home</a>
+
+<a href="{{ '/about' | relative_url }}">About</a>
+
+<a href="{{ '/privacy' | relative_url }}">Privacy</a>
+
+</nav>
+
+</div>
+
 </header>
