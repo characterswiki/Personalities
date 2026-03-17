@@ -46,3 +46,17 @@ for i, name in enumerate(names):
             f.write(full_file_content)
 
 print(f"Fixed! Generated {len(names)} pages with visible content.")
+# After reading names from _data/names.txt, add these lines:
+with open("_data/names.txt", "r", encoding="utf-8") as f:
+    names = [line.strip() for line in f if line.strip()]
+
+# --- NEW: Clean up name formatting ---
+cleaned_names = []
+for name in names:
+    # Replace " And " with " and " (standardize)
+    name = name.replace(" And ", " and ")
+    # Optional: remove any extra spaces
+    name = " ".join(name.split())
+    cleaned_names.append(name)
+names = cleaned_names
+# --- END OF NEW CODE ---
