@@ -2,14 +2,15 @@
 title: "Personalities Database"
 description: "Detailed personality profiles of characters from Japanese media, including anime, manga, and light novels."
 author: "Characters Wiki"
-url: "https://personalitytraits.vercel.app"   # Updated to your Vercel domain
+url: "https://personalitytraits.vercel.app"   # Your Vercel domain
 baseurl: ""                                    # Must be empty for Vercel root
 
 # --- Collections ---
+# This tells Jekyll to process files in the _personalities/ folder
 collections:
   personalities:
     output: true
-    permalink: /:name/          # Clean URLs: /character-name
+    permalink: /:name/          # Results in clean URLs like /goku
 
 # --- Layout Defaults ---
 defaults:
@@ -17,7 +18,7 @@ defaults:
       path: ""
       type: "personalities"
     values:
-      layout: "personality"
+      layout: "personality"      # Automatically applies this layout to all personality pages
 
 # --- SEO & Social Metadata ---
 social:
@@ -48,7 +49,7 @@ exclude:
   - .gitignore
   - vercel.json
 
-# --- Plugins ---
+# --- Plugins (must be in Gemfile as well) ---
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
