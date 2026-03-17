@@ -2,35 +2,29 @@
 layout: default
 ---
 
-<article class="personality-page container">
+<article class="personality">
+  <!-- JSON‑LD structured data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "{{ page.title | escape }}",
+    "description": {{ page.description | strip_html | jsonify }},
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "{{ page.url | absolute_url }}"
+    }
+  }
+  </script>
 
-<header class="personality-header">
+  <h1>{{ page.title }}</h1>
 
-<p class="personality-category">
-Character Analysis
-</p>
+  <!-- Personality content – this comes from the body of the markdown file -->
+  <div class="personality-content">
+    {{ content }}
+  </div>
 
-<h1 class="personality-title">
-{{ page.title }}
-</h1>
-
-<div class="title-divider"></div>
-
-</header>
-
-<section class="entry-content">
-
-{{ content }}
-
-</section>
-
-<footer class="personality-footer">
-
-<p>
-Want to explore more profiles?
-<a href="{{ '/' | relative_url }}">Return to Database</a>
-</p>
-
-</footer>
-
+  <p class="back-link">
+    <a href="{{ '/' | relative_url }}">← Back to all personalities</a>
+  </p>
 </article>
